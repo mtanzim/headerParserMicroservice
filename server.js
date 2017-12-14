@@ -7,6 +7,8 @@
 var fs = require('fs');
 var express = require('express');
 var app = express();
+var getIP = require('ipware')().get_ip;
+var os = require("os");
 
 if (!process.env.DISABLE_XORIGIN) {
   app.use(function(req, res, next) {
@@ -43,7 +45,10 @@ app.get('/test', function(req, res){
 
 app.get('/api/whoami/', function(req, res){
   //res.end('Hello , this is API!');
-  res.send(req.connection.remoteAddress);
+  var ipInfo = getIP(req).clientIp;
+  var lang=req.headers["accept-language"].split(',')[0];
+  var osName=os.userInfo().use
+  res.send(lang);
 });
 
 // Respond not found to all the wrong routes
