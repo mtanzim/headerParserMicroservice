@@ -47,8 +47,10 @@ app.get('/api/whoami/', function(req, res){
   //res.end('Hello , this is API!');
   var ipInfo = getIP(req).clientIp;
   var lang=req.headers["accept-language"].split(',')[0];
-  var osName=os.userInfo().use
-  res.send(lang);
+  var osName=os.type();
+  
+  var userInfoObj= {ipaddress:ipInfo, language:lang,software:osName};
+  res.type('txt').send(JSON.stringify(userInfoObj));
 });
 
 // Respond not found to all the wrong routes
