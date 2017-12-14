@@ -42,7 +42,8 @@ app.get('/test', function(req, res){
 });
 
 app.get('/api/whoami/', function(req, res){
-  res.end('Hello , this is API!');
+  //res.end('Hello , this is API!');
+  res.send(req.connection.remoteAddress);
 });
 
 // Respond not found to all the wrong routes
